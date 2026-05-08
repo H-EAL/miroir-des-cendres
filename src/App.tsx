@@ -296,8 +296,18 @@ function AppLayout() {
     const [cameraEntity, setCameraEntity] = useState<Entity | null>(null);
 
     return (
-        <Canvas width={"100vw"} height={"100vh"} style={{ minHeight: "-webkit-fill-available" }}>
-            <Viewport cameraEntity={cameraEntity} style={{ width: "100%", height: "100%" }}>
+        <Canvas
+            width={"100vw"}
+            height={"100vh"}
+            style={{
+                minWidth: "-webkit-fill-available",
+                minHeight: "-webkit-fill-available",
+            }}
+        >
+            <Viewport
+                cameraEntity={cameraEntity}
+                style={{ position: "absolute", width: "100%", height: "100%" }}
+            >
                 {startSimulation && <SimulationStarter />}
             </Viewport>
         </Canvas>
@@ -321,11 +331,11 @@ function SimulationStarter() {
         }
 
         instance.devices.keyboard.enable();
-        instance.devices.gamepad.enable();
+        instance.devices.gamepads_registry.enable();
         instance.devices.mouse.enableOnViewport({ viewport });
 
         instance.startSimulation();
-    }, [instance, viewportDomElement]);
+    }, [instance, viewport, viewportDomElement]);
 
     useEffect(() => {
         if (document.fullscreenElement === null) {

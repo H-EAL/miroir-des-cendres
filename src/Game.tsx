@@ -98,11 +98,11 @@ function SimulationStarter() {
         viewportDomElement.requestPointerLock();
 
         instance.devices.keyboard.enable();
-        instance.devices.gamepad.enable();
+        instance.devices.gamepads_registry.enable();
         instance.devices.mouse.enableOnViewport({ viewport });
 
         instance.startSimulation();
-    }, [instance, viewportDomElement]);
+    }, [instance, viewport, viewportDomElement]);
 
     return null;
 }
